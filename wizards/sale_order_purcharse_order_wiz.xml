@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_advance_purchase_order" model="ir.ui.view">
+            <field name="name">Convert to Purchase Order</field>
+            <field name="model">sale.advance.puchase.order</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Sales Order">
+                    <p class="oe_grey">
+                        Select how you want to convert this order to purchase. This
+                        will create a draft purchase order that can be modified
+                        before validation.
+                    </p>
+                    <group>
+                        <field name="advance_purchase_order" class="oe_inline"
+                            on_change="onchange_method(advance_purchase_order)"/>
+                        
+                        
+                    </group>
+                    <div>
+                        <b><label string="After clicking 'Show Lines', select lines to convert to purchase and create the purchase order from the 'More' dropdown menu." attrs="{'invisible': [('advance_purchase_order', '!=', 'lines')]}"/></b>
+                    </div>
+                    <footer>
+                        <button name="create_purchase_order" string="Create and open purchase order" type="object"
+                            context="{'open_purchase_order': True}" class="oe_highlight"
+                            attrs="{'invisible': [('advance_purchase_order', '=', 'lines')]}"/>
+                        <button name="create_purchase_order" string="Create purchase order" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('advance_purchase_order', '=', 'lines')]}"/>
+                        <button name="create_purchase_order" string="Show Lines to Invoice" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('advance_purchase_order', '!=', 'lines')]}"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_sale_advance_purchase_order" model="ir.actions.act_window">
+            <field name="name">Invoice Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.advance.purcharse.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+       <record id="sale_to_po_convert" model="ir.ui.view">
+            <field name="name">sale.order.line.sale2po.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+               <data>
+                 <xpath expr="/form//button[@name='invoice_recreate']" position="after">
+                    <button name="%(action_view_sale_advance_purchase_order)d" string="Convert To Purchase Order"
+                            type="action"  class="oe_highlight" groups="base.group_user"/>
+                    
+                 </xpath>
+              </data>
+ 
+            </field>
+        </record>
+        
+   </data>
+</openerp>

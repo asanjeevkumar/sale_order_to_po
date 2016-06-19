@@ -10,9 +10,10 @@ This module converts the sale order to purchase order.
 'depends': [ 'sale','purchase','account' ,'stock'],
 'data': [
   ],
-'data': [
+'data':
+  [
+  'wizards/sale_order_purcharse_order_wiz.xml',
   'views/sale_order.xml',
-  'wizards/sale_order_purcharse_order_wiz.xml'
   ],
 'demo_xml': [],
 'installable': True,

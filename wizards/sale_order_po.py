@@ -22,13 +22,13 @@ class sale_advance_purchase_order(osv.osv_memory):
         act_window = self.pool.get('ir.actions.act_window')
         wizard = self.browse(cr, uid, ids[0], context)
         sale_ids = context.get('active_ids', [])
-        if wizard.advance_payment_method == 'all':
+        if wizard.advance_purchase_order == 'all':
             # create the final invoices of the active sales orders
             res = sale_obj.manual_purchase_order(cr, uid, sale_ids, context)
             
             return {'type': 'ir.actions.act_window_close'}
 
-        if wizard.advance_payment_method == 'lines':
+        if wizard.advance_purchase_order == 'lines':
             # open the list view of sales order lines to invoice
             res = act_window.for_xml_id(cr, uid, 'sale', 'action_order_line_tree2', context)
             res['context'] = {
@@ -43,3 +43,4 @@ class sale_advance_purchase_order(osv.osv_memory):
 
         
         return {'type': 'ir.actions.act_window_close'}
+sale_advance_purchase_order()
